@@ -1,0 +1,11 @@
+@import "./styles/colors.css";
+
+.grid-container {
+  --gap: 32px;
+  --col: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--col), calc((100% - (var(--gap) * (var(--col) - 1))) / var(--col)));
+  grid-template-rows: auto;
+  gap: var(--gap);
+  padding: var(--gap);
+}
