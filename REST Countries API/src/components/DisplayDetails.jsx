@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const DisplayDetails = ({ source }) => (
   source.map((item, index) => {
     return (
@@ -26,5 +28,9 @@ const DisplayDetails = ({ source }) => (
     )
   })
 );
+
+DisplayDetails.propTypes = {
+  source: PropTypes.array,
+};
 
 export default DisplayDetails;
