@@ -1,11 +1,27 @@
 @import "./styles/colors.css";
 
-.grid-container {
-  --gap: 32px;
-  --col: 4;
-  display: grid;
-  grid-template-columns: repeat(var(--col), calc((100% - (var(--gap) * (var(--col) - 1))) / var(--col)));
-  grid-template-rows: auto;
-  gap: var(--gap);
-  padding: var(--gap);
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.attribution {
+  display: block;
+}
+
+@media only screen and (width > 375px) {
+  .grid-container {
+    --gap: 32px;
+    --col: 4;
+    display: grid;
+    grid-template-columns: repeat(var(--col), calc((100% - (var(--gap) * (var(--col) - 1))) / var(--col)));
+    grid-template-rows: auto;
+    gap: var(--gap);
+    padding: var(--gap);
+  }
 }

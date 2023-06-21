@@ -28,16 +28,31 @@ ul, li {
   list-style-type: none;
 }
 
-.flag {
-  min-width: 100%;
-  max-height: 80px;
-}
-
-.name {
-  font-size: 100%;
+.card-info-title,
+.detail-info-title,
+.error {
   font-weight: 600;
 }
 
-.info {
-  font-size: 70%;
+.card-info-title,
+.detail-info-title,
+.input-text,
+.input-text::placeholder,
+.input-btn,
+.select-label,
+.select-dropdown,
+.select-option,
+.error {
+  font-size: 100%;
+}
+
+.card-info-para,
+.detail-info-para,
+.attribution {
+  font-size: 75%;
+}
+
+.error,
+.attribution {
+  text-align: center;
 }

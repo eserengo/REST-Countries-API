@@ -1,13 +1,13 @@
 // import { useState } from 'react'
 import './App.css'
 import { ContextProvider } from './components/FetchDataAndSetContext';
-import DisplayAndFilterData from './components/DisplayAndFilterData'
+import Home from './components/Home';
 
 function App() {
 
   return (
     <ContextProvider>
-      <DisplayAndFilterData />
+      <Home />
     </ContextProvider>
   )
 }
