@@ -22,32 +22,53 @@
 
 body {
   min-height: 100vh;
+  overflow: scroll;
 }
 
 ul, li {
   list-style-type: none;
 }
 
+input[type="text"],
+select,
+button {
+  border: none;
+  outline: none;
+}
+
+.card,
+.select-dropdown,
+.input-btn,
+.checkbox-input {
+  cursor: pointer;
+}
+
+.primary.title,
 .card-info-title,
 .detail-info-title,
+.checkbox-label,
 .error {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.primary.title {
+  font-size: 125%;
 }
 
 .card-info-title,
 .detail-info-title,
-.input-text,
-.input-text::placeholder,
-.input-btn,
-.select-label,
-.select-dropdown,
 .select-option,
+.input-text::placeholder,
 .error {
   font-size: 100%;
 }
 
 .card-info-para,
 .detail-info-para,
+.checkbox-label,
+.select-dropdown,
+.input-text,
+.input-btn,
 .attribution {
   font-size: 75%;
 }
@@ -55,4 +76,18 @@ ul, li {
 .error,
 .attribution {
   text-align: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }

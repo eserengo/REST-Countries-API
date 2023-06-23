@@ -1,20 +1,119 @@
 @import "./styles/colors.css";
 
-.flex-row {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+body {
+  min-width: 375px;
 }
 
-.card {
-  cursor: pointer;
+.light-theme *:not(a) {
+  color: var(--VeryDarkBlue-LightModeText);
+}
+
+.light-theme :where(.main, .attribution, .detail) {
+  background-color: var(--VeryLightGray-LightModeBackground);
+}
+
+.light-theme :where(.header, .card, .detail-flag, .detail-info, .select-dropdown, .input-text, .input-btn) {
+  background-color: var(--White-DarkModeText-LightModeElements);
+}
+
+.light-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown) {
+  box-shadow: 0px 1px 4px var(--DarkGray-LightModeInput);
+}
+
+:where(.light-theme, .dark-theme) .icon {
+  color: var(--DarkGray-LightModeInput) !important;
+}
+
+.dark-theme *:not(a) {
+  color: var(--White-DarkModeText-LightModeElements);
+}
+
+.dark-theme :where(.main, .attribution, .detail) {
+  background-color: var(--VeryDarkBlue-DarkModeBackground);
+}
+
+.dark-theme :where(.header, .card, .detail-flag, .detail-info, .select-dropdown, .input-text, .input-btn) {
+  background-color: var(--DarkBlue-DarkModeElements);
+}
+
+.dark-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown) {
+  box-shadow: 0px 1px 4px var(--VeryDarkBlue-LightModeText);
+}
+
+.input-text,
+.input-btn,
+.select-dropdown {
+  height: 32px;
+  padding: 8px;
+}
+
+.input-text {
+  border-radius: 4px 0px 0px 4px;
+  width: 192px;
+}
+
+.input-btn {
+  border-radius: 0px 4px 4px 0px;
+  width: 32px;
+}
+
+.select-dropdown {
+  border-radius: 4px;
+  width: 128px;
+}
+
+.checkbox-input {
+  appearance: none;
+  border: 1px solid var(--DarkGray-LightModeInput);
+  background-color: var(--DarkGray-LightModeInput);
+  border-radius: 8px;
+  height: 16px;
+  width: 32px;
+  margin: 0px 4px 4px 0px;
+}
+
+.checkbox-label {
+  margin-bottom: 4px;
 }
 
 .attribution {
   display: block;
 }
 
-@media only screen and (width > 375px) {
+.header,
+.main {
+  padding: 16px 8px;
+}
+
+.grid-container,
+.error {
+  padding: 16px 0px;
+}
+
+.card:hover {
+  opacity: 85%;
+}
+
+.card,
+.detail {
+  border-radius: 4px;
+}
+
+.card-info {
+  padding: 8px;
+}
+
+.card-flag-img,
+.detail-flag-img {
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
+.card-flag-img {
+  border-radius: 4px 4px 0px 0px;
+}
+
+@media only screen and (width > 768px) {
   .grid-container {
     --gap: 32px;
     --col: 4;
@@ -22,6 +121,21 @@
     grid-template-columns: repeat(var(--col), calc((100% - (var(--gap) * (var(--col) - 1))) / var(--col)));
     grid-template-rows: auto;
     gap: var(--gap);
-    padding: var(--gap);
+  }
+
+  .header,
+  .main {
+    padding: 16px 32px;
+  }
+
+  .detail {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .detail-flag {
+    width: 50%;
   }
 }

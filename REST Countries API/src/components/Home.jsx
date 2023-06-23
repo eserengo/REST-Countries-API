@@ -1,5 +1,6 @@
 import { useContext, useState, useRef } from 'react'
 import { Context } from './FetchDataAndSetContext';
+import DarkMode from './DarkMode';
 import SearchInput from './SearchInput';
 import SelectInput from './SelectInput';
 import DisplayCards from './DisplayCards';
@@ -9,29 +10,31 @@ import Attribution from './Attribution';
 const Home = () => {
   const data = useContext(Context);
   const initialState = {
-    isDarkMode: 'off',
     showCards: true,
     showDetails: false,
+    isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
     isFiltering: false,
     isSearching: false,
     value: '',
   };
   const [state, setState] = useState(initialState);
   const selectRef = useRef(null);
-  const inputRef = useRef(null);
-  const filteredRegion = state.value !== '' ? data.filter(item => item.region == state.value) : data;
+  const searchRef = useRef(null);
+  const checkboxRef = useRef(null);
+  const filteredRegion = state.value ? data.filter(item => item.region == state.value) : data;
   const filteredName = data.filter(item => item.name.common.toLowerCase() == state.value.toLowerCase());
 
   const handleSearchBtnClick = (prevState) => {
-    inputRef.current.value !== ''
+    searchRef.current.value
       ? setState({
         ...prevState,
         isFiltering: false,
         isSearching: true,
-        value: inputRef.current.value,
+        value: searchRef.current.value,
       })
       : null;
-  }
+    selectRef.current.value = '';
+  };
 
   const handleSelectChange = (prevState) => {
     setState({
@@ -39,7 +42,8 @@ const Home = () => {
       isFiltering: true,
       isSearching: false,
       value: selectRef.current.value,
-    })
+    });
+    searchRef.current.value = '';
   };
 
   const handleCardClick = (event, prevState) => {
@@ -49,14 +53,31 @@ const Home = () => {
       showCards: false,
       showDetails: true,
       value: targetCard,
-    })
-  }
+    });
+  };
+
+  const toggleDarkMode = (prevState) => {
+    !prevState.isDarkMode
+      ? setState({
+        ...prevState,
+        isDarkMode: true,
+      })
+      : setState({
+        ...prevState,
+        isDarkMode: false,
+      }
+    );
+  };
 
   return (
     <>
+      <header className='header flex-row'>
+        <h1 className='primary title'>Where in the world?</h1>
+        <DarkMode state={state} handler={toggleDarkMode} ref={checkboxRef} />
+      </header>
       <main className='main'>
         <div className='flex-row'>
-          <SearchInput state={state} handler={handleSearchBtnClick} ref={inputRef} />
+          <SearchInput state={state} handler={handleSearchBtnClick} ref={searchRef} />
           <SelectInput state={state} handler={handleSelectChange} ref={selectRef} />
         </div>
         <div className='grid-container'>
@@ -64,7 +85,7 @@ const Home = () => {
           {state.showCards && state.isFiltering && <DisplayCards source={filteredRegion} state={state} handler={handleCardClick} />}
           {state.showCards && state.isSearching && <DisplayCards source={filteredName} state={state} handler={handleCardClick} />}
         </div>
-        {state.showCards && state.isSearching && filteredName.length === 0 && <p className='error'>No country was founded!</p>}
+        {state.showCards && state.isSearching && !filteredName.length && <p className='error'>No country was founded!</p>}
         {state.showDetails && <DisplayDetails source={filteredName} /> }
       </main>
       <Attribution />

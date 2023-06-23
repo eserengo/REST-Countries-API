@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const DisplayDetails = ({ source }) => (
   source.map((item, index) => {
     return (
-      <div className='detail flex-row' key={`detail__${index}`}>
+      <div className='detail' key={`detail__${index}`}>
         <div className="detail-flag">
           <img className='detail-flag-img' src={item.flags.svg} alt={item.flags.alt} />
         </div>
