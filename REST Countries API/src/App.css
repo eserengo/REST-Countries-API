@@ -1,4 +1,4 @@
-@import "./styles/colors.css";
+@import "./styles/colors.css"; 
 
 body {
   min-width: 375px;
@@ -8,16 +8,21 @@ body {
   color: var(--VeryDarkBlue-LightModeText);
 }
 
-.light-theme :where(.main, .attribution, .detail) {
+.light-theme,
+.light-theme :where(.main, .attribution, .detail, .checkbox-input) {
   background-color: var(--VeryLightGray-LightModeBackground);
 }
 
-.light-theme :where(.header, .card, .detail-flag, .detail-info, .select-dropdown, .input-text, .input-btn) {
+.light-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn) {
   background-color: var(--White-DarkModeText-LightModeElements);
 }
 
-.light-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown) {
-  box-shadow: 0px 1px 4px var(--DarkGray-LightModeInput);
+.light-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input) {
+  box-shadow: 1px 1px 4px var(--DarkGray-LightModeInput);
+}
+
+.light-theme .checkbox-input::after {
+  background-color: var(--DarkGray-LightModeInput);
 }
 
 :where(.light-theme, .dark-theme) .icon {
@@ -28,23 +33,27 @@ body {
   color: var(--White-DarkModeText-LightModeElements);
 }
 
-.dark-theme :where(.main, .attribution, .detail) {
+.dark-theme,
+.dark-theme :where(.main, .attribution, .detail, .checkbox-input) {
   background-color: var(--VeryDarkBlue-DarkModeBackground);
 }
 
-.dark-theme :where(.header, .card, .detail-flag, .detail-info, .select-dropdown, .input-text, .input-btn) {
+.dark-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn) {
   background-color: var(--DarkBlue-DarkModeElements);
 }
 
-.dark-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown) {
-  box-shadow: 0px 1px 4px var(--VeryDarkBlue-LightModeText);
+.dark-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input) {
+  box-shadow: 1px 1px 4px var(--VeryDarkBlue-LightModeText);
+}
+
+.dark-theme .checkbox-input:checked:after {
+  background-color: var(--White-DarkModeText-LightModeElements);
 }
 
 .input-text,
 .input-btn,
 .select-dropdown {
   height: 32px;
-  padding: 8px;
 }
 
 .input-text {
@@ -60,19 +69,42 @@ body {
 .select-dropdown {
   border-radius: 4px;
   width: 128px;
+  line-height: 32px;
 }
 
 .checkbox-input {
   appearance: none;
-  border: 1px solid var(--DarkGray-LightModeInput);
-  background-color: var(--DarkGray-LightModeInput);
   border-radius: 8px;
   height: 16px;
   width: 32px;
-  margin: 0px 4px 4px 0px;
+  margin: 0px 6px 6px 0px;
+  position: relative;
 }
 
-.checkbox-label {
+.checkbox-input::after,
+.checkbox-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+
+.checkbox-input::after {
+  opacity: 33%;
+  transform: translateX(-8px);
+}
+
+.checkbox-input:checked::after {
+  opacity: 100%;
+  transform: translateX(8px);
+}
+
+.checkbox-label,
+.header {
   margin-bottom: 4px;
 }
 
@@ -91,15 +123,20 @@ body {
 }
 
 .card:hover {
-  opacity: 85%;
+  opacity: 90%;
 }
 
 .card,
 .detail {
   border-radius: 4px;
+  margin-bottom: 16px;
 }
 
-.card-info {
+.card-info,
+.input-text,
+.input-btn,
+.select-dropdown,
+.detail-flag {
   padding: 8px;
 }
 
@@ -111,6 +148,22 @@ body {
 
 .card-flag-img {
   border-radius: 4px 4px 0px 0px;
+}
+
+.detail-info {
+  padding: 16px;
+}
+
+.detail-info-title {
+  margin-bottom: 16px;
+}
+
+.detail-info-panel {
+  margin: 0px 8px 24px 0px;
+}
+
+.detail-info-para {
+  padding: 4px 0px;
 }
 
 @media only screen and (width > 768px) {
@@ -128,14 +181,25 @@ body {
     padding: 16px 32px;
   }
 
+  .card,
   .detail {
+    margin-bottom: 0px;
+  }
+
+  .detail,
+  .detail-info-wrapper {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
 
-  .detail-flag {
+  .detail-flag,
+  .detail-info {
     width: 50%;
+  }
+
+  .detail-info {
+    padding: 32px;
   }
 }

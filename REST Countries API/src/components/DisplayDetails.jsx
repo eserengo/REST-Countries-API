@@ -9,15 +9,15 @@ const DisplayDetails = ({ source }) => (
         </div>
         <div className='detail-info'>
           <p className='detail-info-title'>{item.name.common}</p>
-          <div className='flex-row'>
-            <div className='detail-info-left-panel'>
+          <div className='detail-info-wrapper'>
+            <div className='detail-info-panel'>
               <p className='detail-info-para'>Native Name: {Object.values(item.name.nativeName).map(subitem => subitem.common).join(', ')}</p>
               <p className='detail-info-para'>Population: {item.population}</p>
               <p className='detail-info-para'>Region: {item.region}</p>
               <p className='detail-info-para'>Subregion: {item.subregion}</p>
-            </div>
-            <div className='detail-info-right-panel'>
               <p className='detail-info-para'>Capital: {item.capital}</p>
+            </div>
+            <div className='detail-info-panel'>
               <p className='detail-info-para'>Top level domain: {item.tld.map(subitem => subitem)}</p>
               <p className='detail-info-para'>Currencies: {Object.values(item.currencies).map(subitem => subitem.name).join(', ')}</p>
               <p className='detail-info-para'>Languages: {Object.values(item.languages).join(', ')}</p>
