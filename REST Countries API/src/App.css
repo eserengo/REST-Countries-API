@@ -13,11 +13,11 @@ body {
   background-color: var(--VeryLightGray-LightModeBackground);
 }
 
-.light-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn) {
+.light-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn, .detail-info-badge) {
   background-color: var(--White-DarkModeText-LightModeElements);
 }
 
-.light-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input) {
+.light-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input, .detail-info-badge) {
   box-shadow: 1px 1px 4px var(--DarkGray-LightModeInput);
 }
 
@@ -25,7 +25,7 @@ body {
   background-color: var(--DarkGray-LightModeInput);
 }
 
-:where(.light-theme, .dark-theme) .icon {
+:is(.light-theme, .dark-theme) .icon {
   color: var(--DarkGray-LightModeInput) !important;
 }
 
@@ -38,11 +38,11 @@ body {
   background-color: var(--VeryDarkBlue-DarkModeBackground);
 }
 
-.dark-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn) {
+.dark-theme :where(.header, .card, .select-dropdown, .input-text, .input-btn, .detail-info-badge) {
   background-color: var(--DarkBlue-DarkModeElements);
 }
 
-.dark-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input) {
+.dark-theme :where(.header, .card, .detail, .input-text, .input-btn, .select-dropdown, .checkbox-input, .detail-info-badge) {
   box-shadow: 1px 1px 4px var(--VeryDarkBlue-LightModeText);
 }
 
@@ -166,6 +166,19 @@ body {
   padding: 4px 0px;
 }
 
+.detail-info-borders-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.detail-info-badge {
+  padding: 4px 8px;
+  margin: 0px 4px 4px 0px;
+  border-radius: 4px;
+}
+
 @media only screen and (width > 768px) {
   .grid-container {
     --gap: 32px;
@@ -186,8 +199,12 @@ body {
     margin-bottom: 0px;
   }
 
+  .card-flag-img {
+    border-radius: 0px;
+  }
+
   .detail,
-  .detail-info-wrapper {
+  .detail-info-panel-wrapper {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;

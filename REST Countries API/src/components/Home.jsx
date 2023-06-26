@@ -30,6 +30,8 @@ const Home = () => {
         ...prevState,
         isFiltering: false,
         isSearching: true,
+        showCards: true,
+        showDetails: false,
         value: searchRef.current.value,
       })
       : null;
@@ -41,18 +43,33 @@ const Home = () => {
       ...prevState,
       isFiltering: true,
       isSearching: false,
+      showCards: true,
+      showDetails: false,
       value: selectRef.current.value,
     });
     searchRef.current.value = '';
   };
 
   const handleCardClick = (event, prevState) => {
-    const targetCard = event.target.parentElement.parentElement.querySelector('.card-info-title').textContent;
+    const targetValue = event.target.parentElement.parentElement.querySelector('.card-info-title').textContent;
     setState({
       ...prevState,
       showCards: false,
       showDetails: true,
-      value: targetCard,
+      value: targetValue,
+    });
+  };
+
+  const handleBorderClick = (event, prevState) => {
+    const targetValue = event.target.textContent;
+    data && data.map(item => {
+      item.name.common == targetValue &&
+        setState({
+          ...prevState,
+          isFiltering: true,
+          isSearching: false,
+          value: targetValue,
+        });
     });
   };
 
@@ -86,7 +103,7 @@ const Home = () => {
           {state.showCards && state.isSearching && <DisplayCards source={filteredName} state={state} handler={handleCardClick} />}
         </div>
         {state.showCards && state.isSearching && !filteredName.length && <p className='error'>No country was founded!</p>}
-        {state.showDetails && <DisplayDetails source={filteredName} /> }
+        {state.showDetails && <DisplayDetails source={filteredName} state={state} handler={handleBorderClick} /> }
       </main>
       <Attribution />
     </>

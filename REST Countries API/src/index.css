@@ -36,7 +36,8 @@ button {
 .card,
 .select-dropdown,
 .input-btn,
-.checkbox-input {
+.checkbox-input,
+.detail-info-badge {
   cursor: pointer;
 }
 
@@ -45,7 +46,7 @@ button {
 .detail-info-title,
 .checkbox-label,
 .error {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .primary.title {
@@ -62,6 +63,7 @@ button {
 
 .card-info-para,
 .detail-info-para,
+.detail-info-badge,
 .checkbox-label,
 .select-dropdown,
 .input-text,
