@@ -1,4 +1,4 @@
-import { useContext, useState, useRef } from 'react'
+import { useContext, useState, useRef } from 'react';
 import { Context } from './FetchDataAndSetContext';
 import DarkMode from './DarkMode';
 import SearchInput from './SearchInput';
@@ -24,7 +24,7 @@ const Home = () => {
   const filteredRegion = state.value ? data.filter(item => item.region == state.value) : data;
   const filteredName = data.filter(item => item.name.common.toLowerCase() == state.value.toLowerCase());
 
-  const handleSearchBtnClick = (prevState) => {
+  const handleSearchClick = (prevState) => {
     searchRef.current.value
       ? setState({
         ...prevState,
@@ -51,24 +51,24 @@ const Home = () => {
   };
 
   const handleCardClick = (event, prevState) => {
-    const targetValue = event.target.parentElement.parentElement.querySelector('.card-info-title').textContent;
+    const cardValue = event.target.parentElement.parentElement.querySelector('.card-info-title').textContent;
     setState({
       ...prevState,
       showCards: false,
       showDetails: true,
-      value: targetValue,
+      value: cardValue,
     });
   };
 
-  const handleBorderClick = (event, prevState) => {
-    const targetValue = event.target.textContent;
-    data && data.map(item => {
-      item.name.common == targetValue &&
+  const handleBadgeClick = (event, prevState) => {
+    const badgeValue = event.target.textContent;
+    data.map(item => {
+      item.name.common == badgeValue &&
         setState({
           ...prevState,
           isFiltering: true,
           isSearching: false,
-          value: targetValue,
+          value: badgeValue,
         });
     });
   };
@@ -94,18 +94,23 @@ const Home = () => {
       </header>
       <main className='main'>
         <div className='flex-row'>
-          <SearchInput state={state} handler={handleSearchBtnClick} ref={searchRef} />
+          <SearchInput state={state} handler={handleSearchClick} ref={searchRef} />
           <SelectInput state={state} handler={handleSelectChange} ref={selectRef} />
         </div>
-        <div className='grid-container'>
-          {state.showCards && !state.isFiltering && !state.isSearching && <DisplayCards source={data} state={state} handler={handleCardClick} />}
-          {state.showCards && state.isFiltering && <DisplayCards source={filteredRegion} state={state} handler={handleCardClick} />}
-          {state.showCards && state.isSearching && <DisplayCards source={filteredName} state={state} handler={handleCardClick} />}
-        </div>
+        {data
+          ? <div className='grid-container'>
+              {state.showCards && !state.isFiltering && !state.isSearching && <DisplayCards source={data} state={state} handler={handleCardClick} />}
+              {state.showCards && state.isFiltering && <DisplayCards source={filteredRegion} state={state} handler={handleCardClick} />}
+              {state.showCards && state.isSearching && <DisplayCards source={filteredName} state={state} handler={handleCardClick} />}
+            </div>
+          : <h2 className='secondary title'>Loading...</h2>
+        }
         {state.showCards && state.isSearching && !filteredName.length && <p className='error'>No country was founded!</p>}
-        {state.showDetails && <DisplayDetails source={filteredName} state={state} handler={handleBorderClick} /> }
+        {state.showDetails && <DisplayDetails source={filteredName} state={state} handler={handleBadgeClick} />}
       </main>
-      <Attribution />
+      <footer className='footer'>
+        <Attribution />
+      </footer>
     </>
   );
 }

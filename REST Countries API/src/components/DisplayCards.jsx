@@ -8,7 +8,7 @@ const DisplayCards = ({ source, state, handler }) => {
           item.region.toLowerCase() == 'antarctic'
             ? null
             : <div className='card' key={`card__${index}`} onClick={(event) => handler(event, state)}>
-                <div className="card-flag">
+                <div className='card-flag'>
                   <img className='card-flag-img' src={item.flags.svg} alt={item.flags.alt} />
                 </div>
                 <div className='card-info'>

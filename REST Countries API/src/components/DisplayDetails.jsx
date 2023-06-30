@@ -9,7 +9,7 @@ const DisplayDetails = ({ source, state, handler }) => {
     source.map((item, index) => {
       return (
         <div className='detail' key={`detail__${index}`}>
-          <div className="detail-flag">
+          <div className='detail-flag'>
             <img className='detail-flag-img' src={item.flags.svg} alt={item.flags.alt} />
           </div>
           <div className='detail-info'>

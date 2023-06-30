@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const DarkMode = forwardRef(({ state, handler }, ref) => {

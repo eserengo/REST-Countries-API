@@ -1,9 +1,9 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 const SearchInput = forwardRef(({ state, handler }, ref) => {
   const onEnterKeydown = (event) => {
-    event.code == 'Enter' && handler(state)
+    event.code == 'Enter' && handler(state);
   };
 
   return (

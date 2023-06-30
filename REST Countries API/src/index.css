@@ -42,6 +42,7 @@ button {
 }
 
 .primary.title,
+.secondary.title,
 .card-info-title,
 .detail-info-title,
 .checkbox-label,
@@ -49,7 +50,9 @@ button {
   font-weight: 700;
 }
 
-.primary.title {
+.primary.title,
+.secondary.title,
+.error-title {
   font-size: 125%;
 }
 
@@ -72,6 +75,8 @@ button {
   font-size: 75%;
 }
 
+.secondary.title,
+.error-title,
 .error,
 .attribution {
   text-align: center;

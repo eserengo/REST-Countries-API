@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 const SelectInput = forwardRef(({ state, handler }, ref) => {
